@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   Image,
   Text
@@ -11,24 +10,19 @@ import PropTypes from 'prop-types';
 export default function Channel({
   name,
   icon,
-  textColor,
   onPress,
 }) {
-  const colorStyle = {
-    color: textColor,
-  };
-  const ImageComponent = onPress ? TouchableOpacity : View;
 
   return (
-    <ImageComponent style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image
+        style={styles.icon}
         source={{
           uri: icon,
         }}
-        style={styles.avatar}
       />
-      <Text style={[styles.name, colorStyle]}>{name}</Text>
-    </ImageComponent>
+      <Text style={styles.name}>{name}</Text>
+    </TouchableOpacity>
   );
 }
 
@@ -41,7 +35,6 @@ Channel.propTypes = {
 Channel.defaultProps = {
   name: '',
   icon: '',
-  textColor: 'black',
   onPress: null,
 };
 
@@ -51,7 +44,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginHorizontal: 15,
   },
-  avatar: {
+  icon: {
     width: 60,
     height: 60,
     borderRadius: 45,
